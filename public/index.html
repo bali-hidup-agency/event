@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>HIDUP Community Event</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="You're invited to the HIDUP Community Event · Saturday, 21 November 2026 · Dalung Tropical, Bali">
+<meta property="og:title" content="HIDUP Community Event · 21 November 2026">
+<meta property="og:description" content="An afternoon with the people who made the move to Bali with us. Reply by Sunday, 15 November.">
+<meta property="og:image" content="https://event.bali-hidup-agency.com/img/group-all.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0d0d0c">
+<link rel="icon" type="image/png" href="/img/logo-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: one phone-width column (max 520px, centred on desktop). Screen 1 is the sealed cover over the event video; "Open invitation" reveals the letter, a dark screenshot-ready Save the Date card, the RSVP form, what to expect and a swipeable gallery. HIDUP black + the champagne ribbon from last year's tables. */
+:root {
+  --ink: #141413;
+  --paper: #fbfaf7;
+  --card: #ffffff;
+  --muted: #66635c;
+  --line: #e7e3d9;
+  --gold: #c4a062;
+  --gold-hi: #e2c48a;
+  --gold-soft: #f4ecdc;
+  --yes: #1d7a4c;
+  --no: #8c3d30;
+  --no-soft: #f6e5e0;
+  --night: #0d0d0c;
+  --night-2: #171614;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --script: "Instrument Serif", Georgia, serif;
+  --col: 520px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f3f1ec; --paper: #151514; --card: #1e1e1c; --muted: #aaa69c; --line: #33322e;
+    --gold-soft: #2b2518; --yes: #2f9a63; --no: #e2907f; --no-soft: #2e1c18; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #f3f1ec; --paper: #151514; --card: #1e1e1c; --muted: #aaa69c; --line: #33322e;
+  --gold-soft: #2b2518; --yes: #2f9a63; --no: #e2907f; --no-soft: #2e1c18; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+html { background: var(--night); }
+body { background: var(--night); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body:not(.open), html:has(body:not(.open)) { overflow: hidden; height: 100%; }
+.col { max-width: var(--col); margin: 0 auto; background: var(--paper); min-height: 100vh; position: relative; overflow: hidden; box-shadow: 0 0 80px rgba(0,0,0,.5); }
+.pad { padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: max(22px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ---------- hero / cover ---------- */
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 580px; color: #fff; background: #1a1916 url("/img/video-poster.jpg") center / cover; overflow: hidden; }
+.hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,7,.55) 0%, rgba(8,8,7,.2) 32%, rgba(8,8,7,.85) 100%); transition: background .8s; }
+body:not(.open) .hero::after { background: linear-gradient(180deg, rgba(8,8,7,.7) 0%, rgba(8,8,7,.55) 50%, rgba(8,8,7,.92) 100%); }
+.hero-inner { position: absolute; inset: 0; z-index: 2; }
+.logo { position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); left: max(20px, env(safe-area-inset-left, 0px)); z-index: 3; width: 118px; height: auto; display: block; }
+.topbar { position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); z-index: 3; display: flex; gap: 8px; }
+.pill { display: flex; background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 3px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.pill button { border: 0; background: transparent; color: #fff; font: 700 13px var(--body); letter-spacing: .06em; min-width: 40px; height: 34px; padding: 0 10px; border-radius: 999px; cursor: pointer; }
+.pill button[aria-pressed="true"] { background: #fff; color: #141413; }
+.sound { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.18); background: rgba(0,0,0,.4); color: #fff; display: grid; place-items: center; cursor: pointer; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.sound svg { width: 20px; height: 20px; }
+
+.seal, .opened { position: absolute; left: 0; right: 0; transition: opacity .6s ease, transform .6s ease; }
+.seal { bottom: calc(40px + env(safe-area-inset-bottom, 0px)); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.seal .kicker { font: 600 12px var(--body); letter-spacing: .32em; text-transform: uppercase; color: #e9dfc9; }
+.seal .to { font: italic 30px/1.1 var(--script); color: var(--gold-hi); }
+.seal h1 { font: 800 clamp(40px, 11.5vw, 56px)/1 var(--display); letter-spacing: -.02em; }
+.seal .when { font-weight: 600; font-size: 16px; color: #eeeae2; }
+.seal .when b { color: var(--gold-hi); font-weight: 700; }
+.open-btn { margin-top: 18px; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; background: linear-gradient(180deg, #ddbd80, #b98f4f); color: #1b1408; font: 700 17px var(--body); padding: 17px 30px; border-radius: 999px; box-shadow: 0 12px 30px -10px rgba(196,160,98,.8); animation: breathe 2.6s ease-in-out infinite; }
+.open-btn svg { width: 20px; height: 20px; }
+.seal .tap { font-size: 13px; color: #cfcabf; }
+@keyframes breathe { 50% { transform: scale(1.04); } }
+
+.opened { bottom: calc(30px + env(safe-area-inset-bottom, 0px)); opacity: 0; transform: translateY(18px); pointer-events: none; }
+body.open .seal { opacity: 0; transform: translateY(-18px); pointer-events: none; }
+body.open .opened { opacity: 1; transform: none; pointer-events: auto; }
+.opened .kicker { font: 600 12px var(--body); letter-spacing: .28em; text-transform: uppercase; color: var(--gold-hi); }
+.opened h1 { font: 800 clamp(38px, 10.5vw, 52px)/1.02 var(--display); letter-spacing: -.02em; margin-top: 10px; }
+.opened p { margin: 12px 0 0; color: #eeeae2; max-width: 30ch; }
+.down { margin: 26px auto 0; display: flex; flex-direction: column; align-items: center; gap: 10px; color: #fff; text-decoration: none; font: 600 14px var(--body); letter-spacing: .04em; width: max-content; }
+.down .ring { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(180deg, #ddbd80, #b98f4f); color: #1b1408; box-shadow: 0 0 0 0 rgba(221,189,128,.6); animation: ping 2s ease-out infinite; }
+.down svg { width: 26px; height: 26px; animation: bob 1.4s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(5px); } }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(221,189,128,.55); } 80%, 100% { box-shadow: 0 0 0 18px rgba(221,189,128,0); } }
+
+/* ---------- sections ---------- */
+section { padding-block: 48px; }
+.eyebrow { font: 700 12px var(--body); letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+.h2 { font: 800 30px/1.08 var(--display); letter-spacing: -.01em; margin-top: 8px; }
+.letter { scroll-margin-top: 0; }
+.letter p { margin: 16px 0 0; }
+.sign { margin-top: 24px; }
+.sign em { font: italic 26px var(--script); color: var(--gold); display: block; }
+.sign strong { display: block; font: 600 17px var(--display); margin-top: 2px; }
+
+/* Save the date: deliberately dark in both themes, built to be screenshotted */
+.std { background: radial-gradient(120% 70% at 50% 0%, #2a2419 0%, var(--night) 62%); color: #f3efe6; padding-block: 76px 72px; text-align: center; position: relative; }
+.std::before, .std::after { content: ""; position: absolute; left: 50%; width: 1px; height: 36px; background: linear-gradient(var(--gold), transparent); transform: translateX(-50%); }
+.std::before { top: 0; }
+.std::after { bottom: 0; transform: translateX(-50%) rotate(180deg); }
+.std .eyebrow { color: var(--gold-hi); letter-spacing: .4em; }
+.std .script { font: italic 40px/1 var(--script); color: var(--gold-hi); margin-top: 14px; }
+.bigdate { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 14px; font-family: var(--display); }
+.bigdate .day { font-weight: 800; font-size: 92px; line-height: .9; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.bigdate .side { text-align: left; display: grid; gap: 2px; padding-left: 14px; border-left: 1px solid rgba(226,196,138,.45); }
+.bigdate .side span { font-weight: 600; font-size: 15px; letter-spacing: .2em; text-transform: uppercase; color: #d8d2c4; }
+.bigdate .side b { font-weight: 800; font-size: 26px; letter-spacing: .02em; }
+.rule { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 30px auto 6px; color: var(--gold); max-width: 260px; }
+.rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.rule::after { transform: scaleX(-1); }
+.rule svg { width: 12px; height: 12px; }
+.std-rows { display: grid; gap: 22px; margin-top: 26px; }
+.std-row { display: grid; justify-items: center; gap: 8px; }
+.gico { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--gold-hi); background: radial-gradient(circle at 30% 25%, rgba(226,196,138,.22), rgba(226,196,138,.04) 70%); border: 1px solid rgba(226,196,138,.55); box-shadow: inset 0 0 0 4px rgba(13,13,12,.9), inset 0 0 0 5px rgba(226,196,138,.25); }
+.gico svg { width: 22px; height: 22px; }
+.std-row small { font-size: 11px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: #a9a397; }
+.std-row strong { font: 600 21px/1.25 var(--display); }
+.std-row .addr { font-size: 14px; color: #bdb7aa; max-width: 30ch; }
+.std .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 12px; border-radius: 14px; font: 600 15px var(--body); text-decoration: none; text-align: center; }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn.gold { background: linear-gradient(180deg, #ddbd80, #b98f4f); color: #1b1408; }
+.btn.ghost { border: 1px solid rgba(226,196,138,.5); color: #f3efe6; }
+.count { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 26px; }
+.count div { border: 1px solid rgba(226,196,138,.28); border-radius: 14px; padding: 12px 4px 10px; background: rgba(255,255,255,.03); }
+.count b { display: block; font: 800 26px/1 var(--display); font-variant-numeric: tabular-nums; color: #fff; }
+.count span { font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #a9a397; }
+
+/* RSVP */
+.rsvp { scroll-margin-top: 10px; }
+.deadline { display: flex; gap: 10px; align-items: center; margin-top: 14px; padding: 12px 14px; border-radius: 14px; background: var(--gold-soft); font-size: 15px; }
+.deadline svg { width: 20px; height: 20px; color: var(--gold); flex: none; }
+.field { margin-top: 18px; }
+.field:first-of-type { margin-top: 22px; }
+.field label { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+.field label span { font-weight: 500; color: var(--muted); font-size: 13px; }
+.field input { width: 100%; height: 56px; font: 500 18px var(--body); color: var(--ink); background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 0 16px; }
+.field input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 25%, transparent); }
+.field input.bad { border-color: var(--no); }
+.stepper { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; padding: 8px 8px 8px 16px; background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; }
+.stepper span { font-weight: 600; font-size: 15px; }
+.stepper .ctl { display: flex; align-items: center; gap: 4px; }
+.stepper button { width: 44px; height: 44px; border-radius: 12px; border: 0; background: var(--paper); color: var(--ink); font: 700 22px var(--body); cursor: pointer; }
+.stepper button:disabled { opacity: .35; cursor: default; }
+.stepper output { min-width: 34px; text-align: center; font: 800 22px var(--display); font-variant-numeric: tabular-nums; }
+.err { color: var(--no); font-weight: 600; font-size: 15px; margin: 12px 0 0; }
+.vote { display: grid; gap: 12px; margin-top: 22px; }
+.vote a { position: relative; overflow: hidden; display: grid; grid-template-columns: 44px 1fr 20px; align-items: center; gap: 14px; min-height: 72px; padding: 0 18px 0 14px; border-radius: 20px; text-decoration: none; transition: transform .15s ease, box-shadow .2s ease; }
+.vote a:active { transform: scale(.985); }
+.vote .ic { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; }
+.vote .ic svg { width: 22px; height: 22px; }
+.vote .lbl { display: grid; gap: 1px; text-align: left; }
+.vote .lbl b { font: 700 18px/1.2 var(--display); letter-spacing: -.005em; }
+.vote .lbl small { font: 500 13px/1.3 var(--body); opacity: .8; }
+.vote .arr { width: 20px; height: 20px; opacity: .75; }
+.vote .yes { color: #fff; background: linear-gradient(160deg, #2f9a66 0%, #1d7a4c 55%, #155c39 100%); border: 1px solid rgba(226,196,138,.65); box-shadow: 0 16px 34px -16px rgba(29,122,76,.9), inset 0 1px 0 rgba(255,255,255,.22); }
+.vote .yes .ic { background: rgba(255,255,255,.16); box-shadow: inset 0 0 0 1px rgba(226,196,138,.7); color: #f6e7c6; }
+.vote .yes::after { content: ""; position: absolute; top: 0; bottom: 0; width: 60%; left: -70%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.18), transparent); animation: sheen 4.5s ease-in-out 1.5s infinite; }
+@keyframes sheen { 0%, 70% { left: -70%; } 100% { left: 120%; } }
+.vote .no { color: var(--ink); background: var(--card); border: 1px solid var(--line); min-height: 64px; }
+.vote .no .ic { width: 40px; height: 40px; background: var(--no-soft, #f7e6e2); color: var(--no); }
+.vote .no .lbl b { font-size: 16px; font-weight: 600; }
+.vote .no .arr { color: var(--muted); }
+.via { display: flex; align-items: flex-start; justify-content: center; gap: 6px; margin-top: 12px; font-size: 14px; color: var(--muted); text-align: center; }
+.via svg { width: 16px; height: 16px; flex: none; margin-top: 3px; }
+.vote.busy a { opacity: .6; pointer-events: none; }
+.thanks { margin-top: 18px; padding: 16px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); font-size: 15px; }
+.thanks p { margin: 0; }
+.thanks p + p { margin-top: 8px; color: var(--muted); }
+.num { font-weight: 700; color: var(--ink); user-select: all; font-variant-numeric: tabular-nums; }
+
+/* what to expect */
+.expect { background: var(--card); border-top: 1px solid var(--line); }
+.expect .lead { margin: 12px 0 0; color: var(--muted); }
+.feats { display: grid; gap: 14px; margin-top: 24px; }
+.feat { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: start; padding: 16px; border-radius: 18px; background: var(--paper); border: 1px solid var(--line); }
+.feat .gico { width: 48px; height: 48px; box-shadow: none; color: var(--gold); background: var(--gold-soft); border-color: color-mix(in srgb, var(--gold) 55%, transparent); }
+.feat h3 { font: 700 17px/1.3 var(--display); }
+.feat p { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+.when3 { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 26px; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.when3 div { padding: 14px 10px; text-align: center; }
+.when3 div + div { border-left: 1px solid var(--line); }
+.when3 time { display: block; font: 800 18px var(--display); color: var(--gold); font-variant-numeric: tabular-nums; }
+.when3 span { display: block; font-size: 13px; line-height: 1.35; margin-top: 4px; }
+
+/* gallery */
+.gallery .pad p { margin: 8px 0 0; color: var(--muted); }
+.strip { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px max(22px, env(safe-area-inset-left, 0px)) 8px; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.strip figure { flex: 0 0 88%; margin: 0; scroll-snap-align: center; position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3.4; background: var(--line); }
+.strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.strip figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 14px 12px; color: #fff; font-size: 14px; font-weight: 600; background: linear-gradient(transparent, rgba(0,0,0,.65)); }
+.strip figcaption small { display: block; font-weight: 500; opacity: .8; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.dots { display: flex; justify-content: center; gap: 6px; padding-top: 10px; }
+.dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); transition: background .2s, width .2s; }
+.dots i.on { background: var(--gold); width: 18px; border-radius: 3px; }
+
+/* footer: light band so the black logo reads in both themes */
+footer { background: #f6f3ec; color: #4c4943; text-align: center; padding-block: 40px calc(40px + env(safe-area-inset-bottom, 0px)); font-size: 14px; display: grid; justify-items: center; gap: 12px; }
+footer img { width: 170px; height: auto; display: block; }
+footer .num { color: #141413; }
+footer .contact { display: grid; gap: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="col">
+  <header class="hero" id="top">
+    <video id="vid" src="/video/hidup-event-2025.mp4" poster="/img/video-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+    <img class="logo" src="/img/logo-white.png" alt="HIDUP · Bali Hidup Agency">
+    <div class="topbar">
+      <div class="pill" role="group" aria-label="Language">
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-de" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+      <button type="button" class="sound" id="sound" aria-label="Music on" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path id="wave" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path id="mute" d="m22 9-6 6M16 9l6 6"/></svg>
+      </button>
+    </div>
+
+    <div class="hero-inner">
+      <div class="seal pad">
+        <div class="kicker" data-i18n="s-kicker">You're invited</div>
+        <div class="to" data-i18n="s-to">to the</div>
+        <h1>HIDUP<br>Community Event</h1>
+        <div class="when"><span data-i18n="s-date">Saturday, 21 November 2026</span> · <b data-i18n="s-start">Starts 4 pm</b></div>
+        <button type="button" class="open-btn" id="open">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span data-i18n="s-open">Open invitation</span>
+        </button>
+        <div class="tap" data-i18n="s-tap">Tap to open your invitation</div>
+      </div>
+
+      <div class="opened pad">
+        <div class="kicker" data-i18n="o-kicker">21 · 11 · 2026 · Bali</div>
+        <h1>HIDUP<br>Community Event</h1>
+        <p data-i18n="o-sub">An afternoon with the people who made the move to Bali with us.</p>
+        <a class="down" href="#letter" id="down">
+          <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          <span data-i18n="o-hint">Scroll down</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="letter pad" id="letter">
+      <div class="eyebrow" data-i18n="l-eye">Dear clients</div>
+      <h2 class="h2" data-i18n="l-h">Let's finally meet in person</h2>
+      <p data-i18n="l-p1">Many of you set up your company with us, sorted out your visa or planned your new start in Bali. Usually we only see each other on a call or chat on WhatsApp. On 21 November we want to change that.</p>
+      <p data-i18n="l-p2">We're inviting our whole community to a relaxed afternoon at Dalung Tropical: entrepreneurs, remote workers and investors who have all taken the same step. Good conversations, new contacts, food and drinks.</p>
+      <div class="sign"><em data-i18n="l-sign">See you there,</em><strong data-i18n="l-team">Your Bali Hidup Agency team</strong></div>
+    </section>
+
+    <section class="std pad" aria-labelledby="std-h">
+      <div class="eyebrow" id="std-h">Save the Date</div>
+      <div class="script" data-i18n="std-script">HIDUP Community Event</div>
+      <div class="bigdate">
+        <div class="day">21</div>
+        <div class="side"><span data-i18n="std-month">November</span><b>2026</b><span data-i18n="std-dow">Saturday</span></div>
+      </div>
+      <div class="rule" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M6 0 12 6 6 12 0 6z" fill="currentColor"/></svg></div>
+      <div class="std-rows">
+        <div class="std-row">
+          <div class="gico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <small data-i18n="d-time">Time</small>
+          <strong data-i18n="d-time-v">4:00 – 8:00 pm · Bali time</strong>
+        </div>
+        <div class="std-row">
+          <div class="gico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 10c0 5.5-7 11-7 11s-7-5.5-7-11a7 7 0 0 1 14 0z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <small data-i18n="d-loc">Location</small>
+          <strong>Dalung Tropical</strong>
+          <div class="addr">Jl. Raya Padang Luwih No. 118, Dalung, Kuta Utara, Badung, Bali 80361</div>
+        </div>
+      </div>
+      <div class="btns">
+        <a class="btn gold" href="https://maps.app.goo.gl/W32FoWw96UijHqvo7" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 19-9-9 19-2-8-8-2z"/></svg>
+          <span data-i18n="d-maps">Open in Maps</span>
+        </a>
+        <a class="btn ghost" id="cal" target="_blank" rel="noopener" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M12 13v5M9.5 15.5h5"/></svg>
+          <span data-i18n="d-cal">Add to calendar</span>
+        </a>
+      </div>
+      <div class="count" aria-label="Countdown">
+        <div><b id="c-d">0</b><span data-i18n="c-d">Days</span></div>
+        <div><b id="c-h">0</b><span data-i18n="c-h">Hours</span></div>
+        <div><b id="c-m">0</b><span data-i18n="c-m">Min</span></div>
+        <div><b id="c-s">0</b><span data-i18n="c-s">Sec</span></div>
+      </div>
+    </section>
+
+    <section class="rsvp pad" id="rsvp" aria-labelledby="rsvp-h">
+      <div class="eyebrow" data-i18n="r-eye">RSVP</div>
+      <h2 class="h2" id="rsvp-h" data-i18n="r-h">Will you join us?</h2>
+      <div class="deadline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span id="deadline"></span>
+      </div>
+
+      <div class="field">
+        <label for="name" data-i18n="r-name">Your name</label>
+        <input type="text" id="name" autocomplete="name" enterkeyhint="next" data-i18n-ph="r-name-ph" placeholder="First and last name">
+      </div>
+      <div class="field">
+        <label for="phone"><b data-i18n="r-phone">Your WhatsApp number</b><span data-i18n="r-phone-why">for event updates</span></label>
+        <input type="tel" id="phone" autocomplete="tel" inputmode="tel" enterkeyhint="done" placeholder="+49 170 1234567">
+      </div>
+      <div class="stepper">
+        <span data-i18n="r-guests">People incl. you</span>
+        <div class="ctl">
+          <button type="button" id="minus" aria-label="−1">−</button>
+          <output id="guests" aria-live="polite">1</output>
+          <button type="button" id="plus" aria-label="+1">+</button>
+        </div>
+      </div>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <p class="err" id="err" role="alert" hidden></p>
+
+      <div class="vote">
+        <a class="yes" id="vote-yes" href="#" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="lbl"><b data-i18n="r-yes">Yes, I'll be there</b><small data-i18n="r-yes-sub">Looking forward to it</small></span>
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="no" id="vote-no" href="#" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+          <span class="lbl"><b data-i18n="r-no">No, I can't make it</b><small data-i18n="r-no-sub">Maybe next time</small></span>
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="via">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3c-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        <span data-i18n="r-via">One tap and your reply goes straight to our team. We'll send event updates to your WhatsApp.</span>
+      </div>
+      <div class="thanks" id="thanks" hidden>
+        <p id="thanks-lead"></p>
+        <p id="thanks-fallback"><span data-i18n="t-fallback">WhatsApp didn't open? Message us at</span> <span class="num">+62 853-3371-1393</span></p>
+      </div>
+    </section>
+
+    <section class="expect pad" aria-labelledby="exp-h">
+      <div class="eyebrow" data-i18n="x-eye">The afternoon</div>
+      <h2 class="h2" id="exp-h" data-i18n="x-h">What to expect</h2>
+      <p class="lead" data-i18n="x-lead">No stage programme, no sales pitch. Just the people who live the same Bali life as you.</p>
+      <div class="feats">
+        <div class="feat">
+          <div class="gico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.4 6-5.4s5.4 2 6 5.4"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.8 1.4 5.5 4.6"/></svg></div>
+          <div><h3 data-i18n="x1-h">People on the same path</h3><p data-i18n="x1-p">Entrepreneurs, remote workers and investors from the HIDUP community who have built their life in Bali.</p></div>
+        </div>
+        <div class="feat">
+          <div class="gico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-3.5-3H12"/></svg></div>
+          <div><h3 data-i18n="x2-h">Real conversations, not talks</h3><p data-i18n="x2-p">Swap experiences on visas, companies, taxes and everyday island life with people who have already done it.</p></div>
+        </div>
+        <div class="feat">
+          <div class="gico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1.5 1.5 0 0 0 2.1-2.1"/><path d="m14 14 2.5 2.5a1.5 1.5 0 0 0 2.1-2.1l-3.9-3.9a2 2 0 0 0-2.8 0l-.9.9a1.5 1.5 0 0 1-2.1-2.1L11.6 6a3.5 3.5 0 0 1 4.6-.3l.4.3"/><path d="m21 3-2 2-3 .5M3 3l2 2 .5 3L3 11l7 7"/></svg></div>
+          <div><h3 data-i18n="x3-h">New contacts and partnerships</h3><p data-i18n="x3-p">Maybe your next business partner, client or simply a new friend on the island.</p></div>
+        </div>
+        <div class="feat">
+          <div class="gico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l-1 7a3 3 0 0 1-6 0L8 2z"/><path d="M12 12v8M8.5 21h7"/></svg></div>
+          <div><h3 data-i18n="x4-h">Food, drinks and the HIDUP team</h3><p data-i18n="x4-p">Meet the faces behind the WhatsApp messages over good food and a cold drink.</p></div>
+        </div>
+      </div>
+      <div class="when3">
+        <div><time>16:00</time><span data-i18n="w1">Arrival &amp; welcome drink</span></div>
+        <div><time data-i18n="w2t">After</time><span data-i18n="w2">Networking, food &amp; drinks</span></div>
+        <div><time>20:00</time><span data-i18n="w3">Wrap-up</span></div>
+      </div>
+    </section>
+
+    <section class="gallery" aria-labelledby="gal-h">
+      <div class="pad">
+        <div class="eyebrow" data-i18n="g-eye">Memories</div>
+        <h2 class="h2" id="gal-h" data-i18n="g-h">Our last gathering</h2>
+        <p data-i18n="g-p">Swipe through the End Year Summit 2025.</p>
+      </div>
+      <div class="strip" id="strip">
+        <figure><img src="/img/ASD_2246.jpg" alt="" loading="lazy" style="object-position:center 35%"><figcaption><small>Summit 2025</small><span data-i18n="c1">On stage at the End Year Summit</span></figcaption></figure>
+        <figure><img src="/img/ASD_2015.jpg" alt="" loading="lazy"><figcaption><small>Summit 2025</small><span data-i18n="c2">Good to see you again</span></figcaption></figure>
+        <figure><img src="/img/group-all.jpg" alt="" loading="lazy"><figcaption><small>Summit 2025</small><span data-i18n="c3">All of us together</span></figcaption></figure>
+        <figure><img src="/img/ASD_1731.jpg" alt="" loading="lazy"><figcaption><small>Summit 2025</small><span data-i18n="c4">Just before doors opened</span></figcaption></figure>
+        <figure><img src="/img/team.jpg" alt="" loading="lazy"><figcaption><small>Summit 2025</small><span data-i18n="c5">The Bali Hidup Agency team</span></figcaption></figure>
+      </div>
+      <div class="dots" id="dots" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer class="pad">
+    <img src="/img/logo-black.png" alt="HIDUP · Bali Hidup Agency">
+    <div class="contact">
+      <span class="num">+62 853-3371-1393</span>
+      <span class="num">info@bali-hidup-agency.com</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var WA = "6285333711393";
+  var API = "/api/rsvp"; // replies are saved here; WhatsApp is only the fallback
+  var MUSIC = ""; // path to a licensed music-only track, e.g. "audio/music.mp3"; empty = no music
+  var START = new Date("2026-11-21T16:00:00+08:00");
+  var DEADLINE = new Date("2026-11-15T23:59:59+08:00");
+  var CAL_DATES = "20261121T080000Z/20261121T120000Z";
+  var ADDRESS = "Dalung Tropical, Jl. Raya Padang Luwih No.118, Dalung, Kuta Utara, Badung, Bali 80361";
+
+  var T = {
+    en: {
+      "s-kicker": "You're invited", "s-to": "to the", "s-date": "Saturday, 21 November 2026", "s-start": "Starts 4 pm",
+      "s-open": "Open invitation", "s-tap": "Tap to open your invitation",
+      "o-kicker": "21 · 11 · 2026 · Bali",
+      "o-sub": "An afternoon with the people who made the move to Bali with us.",
+      "o-hint": "Scroll down",
+      "l-eye": "Dear clients", "l-h": "Let's finally meet in person",
+      "l-p1": "Many of you set up your company with us, sorted out your visa or planned your new start in Bali. Usually we only see each other on a call or chat on WhatsApp. On 21 November we want to change that.",
+      "l-p2": "We're inviting our whole community to a relaxed afternoon at Dalung Tropical: entrepreneurs, remote workers and investors who have all taken the same step. Good conversations, new contacts, food and drinks.",
+      "l-sign": "See you there,", "l-team": "Your Bali Hidup Agency team",
+      "std-script": "HIDUP Community Event", "std-month": "November", "std-dow": "Saturday",
+      "d-time": "Time", "d-time-v": "4:00 – 8:00 pm · Bali time",
+      "d-loc": "Location", "d-maps": "Open in Maps", "d-cal": "Add to calendar",
+      "c-d": "Days", "c-h": "Hours", "c-m": "Min", "c-s": "Sec",
+      "r-eye": "RSVP", "r-h": "Will you join us?",
+      "r-name": "Your name", "r-name-ph": "First and last name",
+      "r-phone": "Your WhatsApp number", "r-phone-why": "for event updates",
+      "r-guests": "People incl. you",
+      "r-yes": "Yes, I'll be there", "r-no": "No, I can't make it",
+      "r-yes-sub": "Looking forward to it", "r-no-sub": "Maybe next time",
+      "r-via": "One tap and your reply goes straight to our team. We'll send event updates to your WhatsApp.",
+      "e-name": "Please enter your name.",
+      "e-phone": "Please enter your WhatsApp number with country code.",
+      "t-yes": function (n) { return "Thank you! You're on the guest list for " + n + (n === 1 ? " person" : " people") + ". We'll send you the details on WhatsApp before the event."; },
+      "t-no": "Thanks for letting us know. We'll miss you, and hope to see you next time!",
+      "t-yes-wa": function (n) { return "Your reply for " + n + (n === 1 ? " person" : " people") + " is ready in WhatsApp. Just hit send and you're on the guest list."; },
+      "t-no-wa": "Send the message in WhatsApp so we have your reply.",
+      "t-saving": "Saving your reply…",
+      "t-fallback": "WhatsApp didn't open? Message us at",
+      "dl-open": function (d) { return d <= 0 ? "Please reply <b>today</b>." : d === 1 ? "Please reply by <b>tomorrow, Sunday 15 November</b>." : "Please reply by <b>Sunday, 15 November</b> · " + d + " days left"; },
+      "dl-closed": "The reply date has passed, but message us anyway and we'll see what we can do.",
+      "x-eye": "The afternoon", "x-h": "What to expect",
+      "x-lead": "No stage programme, no sales pitch. Just the people who live the same Bali life as you.",
+      "x1-h": "People on the same path", "x1-p": "Entrepreneurs, remote workers and investors from the HIDUP community who have built their life in Bali.",
+      "x2-h": "Real conversations, not talks", "x2-p": "Swap experiences on visas, companies, taxes and everyday island life with people who have already done it.",
+      "x3-h": "New contacts and partnerships", "x3-p": "Maybe your next business partner, client or simply a new friend on the island.",
+      "x4-h": "Food, drinks and the HIDUP team", "x4-p": "Meet the faces behind the WhatsApp messages over good food and a cold drink.",
+      "w1": "Arrival & welcome drink", "w2t": "After", "w2": "Networking, food & drinks", "w3": "Wrap-up",
+      "g-eye": "Memories", "g-h": "Our last gathering", "g-p": "Swipe through the End Year Summit 2025.",
+      "c1": "On stage at the End Year Summit", "c2": "Good to see you again", "c3": "All of us together",
+      "c4": "Just before doors opened", "c5": "The Bali Hidup Agency team",
+      "cal-title": "HIDUP Community Event",
+      "cal-details": "Community get-together hosted by Bali Hidup Agency",
+      "m-yes": function (v) { return "Hi HIDUP team,\nI'll be at the Community Event on 21 November.\n\nName: " + v.name + "\nWhatsApp: " + v.phone + "\nPeople: " + v.guests; },
+      "m-no": function (v) { return "Hi HIDUP team,\nunfortunately I can't make it to the Community Event on 21 November.\n\nName: " + v.name + "\nWhatsApp: " + v.phone; },
+      "snd-on": "Music on", "snd-off": "Music off"
+    },
+    de: {
+      "s-kicker": "Du bist eingeladen", "s-to": "zum", "s-date": "Samstag, 21. November 2026", "s-start": "Start 16 Uhr",
+      "s-open": "Einladung öffnen", "s-tap": "Tippe, um deine Einladung zu öffnen",
+      "o-kicker": "21 · 11 · 2026 · Bali",
+      "o-sub": "Ein Nachmittag mit den Menschen, die mit uns den Schritt nach Bali gegangen sind.",
+      "o-hint": "Nach unten scrollen",
+      "l-eye": "Liebe Kundinnen und Kunden", "l-h": "Lasst uns endlich persönlich treffen",
+      "l-p1": "Viele von euch haben mit uns ihre Firma gegründet, ihr Visum geklärt oder ihren Neustart auf Bali geplant. Meistens sehen wir uns dabei nur im Call oder schreiben auf WhatsApp. Am 21. November wollen wir das ändern.",
+      "l-p2": "Wir laden unsere ganze Community zu einem entspannten Nachmittag ins Dalung Tropical ein: Unternehmer, Remote Worker und Investoren, die alle denselben Schritt gegangen sind. Gute Gespräche, neue Kontakte, Essen und Getränke.",
+      "l-sign": "Wir freuen uns auf dich,", "l-team": "Dein Bali Hidup Agency Team",
+      "std-script": "HIDUP Community Event", "std-month": "November", "std-dow": "Samstag",
+      "d-time": "Uhrzeit", "d-time-v": "16:00 – 20:00 Uhr · Bali-Zeit",
+      "d-loc": "Ort", "d-maps": "In Maps öffnen", "d-cal": "In den Kalender",
+      "c-d": "Tage", "c-h": "Std", "c-m": "Min", "c-s": "Sek",
+      "r-eye": "Zusage", "r-h": "Bist du dabei?",
+      "r-name": "Dein Name", "r-name-ph": "Vor- und Nachname",
+      "r-phone": "Deine WhatsApp-Nummer", "r-phone-why": "für Event-Infos",
+      "r-guests": "Personen inkl. dir",
+      "r-yes": "Ja, ich bin dabei", "r-no": "Nein, leider nicht",
+      "r-yes-sub": "Ich freue mich drauf", "r-no-sub": "Vielleicht beim nächsten Mal",
+      "r-via": "Ein Tipp und deine Antwort ist direkt bei unserem Team. Event-Infos schicken wir dir per WhatsApp.",
+      "e-name": "Bitte trag deinen Namen ein.",
+      "e-phone": "Bitte trag deine WhatsApp-Nummer mit Ländervorwahl ein.",
+      "t-yes": function (n) { return "Danke! Du stehst mit " + n + (n === 1 ? " Person" : " Personen") + " auf der Gästeliste. Alle Details schicken wir dir vor dem Event per WhatsApp."; },
+      "t-no": "Danke für deine Rückmeldung. Schade, hoffentlich beim nächsten Mal!",
+      "t-yes-wa": function (n) { return "Deine Zusage für " + n + (n === 1 ? " Person" : " Personen") + " ist in WhatsApp vorbereitet. Nur noch auf Senden tippen, dann stehst du auf der Gästeliste."; },
+      "t-no-wa": "Schick die Nachricht in WhatsApp ab, damit wir Bescheid wissen.",
+      "t-saving": "Deine Antwort wird gespeichert …",
+      "t-fallback": "WhatsApp hat sich nicht geöffnet? Schreib uns an",
+      "dl-open": function (d) { return d <= 0 ? "Bitte antworte <b>heute</b>." : d === 1 ? "Bitte antworte bis <b>morgen, Sonntag 15. November</b>." : "Bitte antworte bis <b>Sonntag, 15. November</b> · noch " + d + " Tage"; },
+      "dl-closed": "Die Antwortfrist ist vorbei. Schreib uns trotzdem, wir schauen, was noch geht.",
+      "x-eye": "Der Nachmittag", "x-h": "Was dich erwartet",
+      "x-lead": "Kein Bühnenprogramm, kein Verkaufsgespräch. Nur die Menschen, die dasselbe Bali-Leben leben wie du.",
+      "x1-h": "Menschen auf demselben Weg", "x1-p": "Unternehmer, Remote Worker und Investoren aus der HIDUP-Community, die sich auf Bali ein Leben aufgebaut haben.",
+      "x2-h": "Echte Gespräche statt Vorträge", "x2-p": "Erfahrungen austauschen zu Visum, Firma, Steuern und Inselalltag, mit Leuten, die es schon gemacht haben.",
+      "x3-h": "Neue Kontakte und Kooperationen", "x3-p": "Vielleicht dein nächster Geschäftspartner, Kunde oder einfach ein neuer Freund auf der Insel.",
+      "x4-h": "Essen, Drinks und das HIDUP-Team", "x4-p": "Lerne die Gesichter hinter den WhatsApp-Nachrichten kennen, bei gutem Essen und einem kalten Drink.",
+      "w1": "Ankommen & Welcome Drink", "w2t": "Danach", "w2": "Networking, Essen & Drinks", "w3": "Ausklang",
+      "g-eye": "Erinnerungen", "g-h": "Unser letztes Treffen", "g-p": "Wisch durch den End Year Summit 2025.",
+      "c1": "Auf der Bühne beim End Year Summit", "c2": "Schön, euch wiederzusehen", "c3": "Alle zusammen",
+      "c4": "Kurz vor dem Einlass", "c5": "Das Bali Hidup Agency Team",
+      "cal-title": "HIDUP Community Event",
+      "cal-details": "Community-Treffen der Bali Hidup Agency",
+      "m-yes": function (v) { return "Hallo HIDUP-Team,\nich bin beim Community Event am 21. November dabei.\n\nName: " + v.name + "\nWhatsApp: " + v.phone + "\nPersonen: " + v.guests; },
+      "m-no": function (v) { return "Hallo HIDUP-Team,\nich kann beim Community Event am 21. November leider nicht dabei sein.\n\nName: " + v.name + "\nWhatsApp: " + v.phone; },
+      "snd-on": "Musik an", "snd-off": "Musik aus"
+    }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var h = location.hash;
+  var lang = h === "#de" ? "de" : h === "#en" ? "en" : ((navigator.language || "").toLowerCase().indexOf("de") === 0 ? "de" : "en");
+  var guests = 1, lastVote = null, errKey = null;
+  var t = function (k) { return T[lang][k]; };
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var v = t(el.getAttribute("data-i18n"));
+      if (typeof v === "string") el.textContent = v;
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) { el.placeholder = t(el.getAttribute("data-i18n-ph")); });
+    ["en", "de"].forEach(function (l) { $("lang-" + l).setAttribute("aria-pressed", String(l === lang)); });
+    $("cal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(t("cal-title")) +
+      "&dates=" + CAL_DATES + "&ctz=Asia/Makassar&location=" + encodeURIComponent(ADDRESS) + "&details=" + encodeURIComponent(t("cal-details"));
+    renderDeadline();
+    updateLinks();
+    if (errKey) $("err").textContent = t(errKey);
+    if (lastVote) renderThanks();
+    renderSound();
+  }
+
+  function renderDeadline() {
+    var now = new Date();
+    if (now > DEADLINE) { $("deadline").innerHTML = t("dl-closed"); return; }
+    var day = function (d) { return Math.floor((d.getTime() + 8 * 3600e3) / 86400e3); };
+    $("deadline").innerHTML = t("dl-open")(day(DEADLINE) - day(now));
+  }
+
+  function tick() {
+    var s = Math.floor(Math.max(0, START - new Date()) / 1000);
+    $("c-d").textContent = Math.floor(s / 86400);
+    $("c-h").textContent = Math.floor(s % 86400 / 3600);
+    $("c-m").textContent = Math.floor(s % 3600 / 60);
+    $("c-s").textContent = s % 60;
+  }
+
+  // RSVP: Yes/No are real links whose WhatsApp text follows the form, so one tap sends.
+  function vals() { return { name: $("name").value.trim(), phone: $("phone").value.trim(), guests: guests }; }
+  function wa(text) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(text); }
+  function updateLinks() {
+    var v = vals();
+    $("vote-yes").href = wa(t("m-yes")(v));
+    $("vote-no").href = wa(t("m-no")(v));
+  }
+  var mode = "saved"; // "saving" | "saved" | "whatsapp"
+  function renderThanks() {
+    $("thanks-lead").textContent = mode === "saving" ? t("t-saving")
+      : mode === "whatsapp" ? (lastVote === "yes" ? t("t-yes-wa")(guests) : t("t-no-wa"))
+      : (lastVote === "yes" ? t("t-yes")(guests) : t("t-no"));
+    $("thanks-fallback").hidden = mode !== "whatsapp";
+    $("thanks").hidden = false;
+  }
+  function send(k, v) {
+    lastVote = k; mode = "saving"; renderThanks();
+    document.querySelector(".vote").classList.add("busy");
+    fetch(API, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name: v.name, phone: v.phone, guests: v.guests, status: k, lang: lang, website: $("website").value })
+    }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function () { mode = "saved"; renderThanks(); $("thanks").scrollIntoView({ behavior: "smooth", block: "center" }); })
+      .catch(function () { mode = "whatsapp"; renderThanks(); location.href = $("vote-" + k).href; })
+      .then(function () { document.querySelector(".vote").classList.remove("busy"); });
+  }
+  function showErr(key, field) {
+    errKey = key;
+    $("err").textContent = t(key);
+    $("err").hidden = false;
+    field.classList.add("bad");
+    field.focus();
+  }
+  function phoneOk(p) { return p.replace(/\D/g, "").length >= 8; }
+  ["yes", "no"].forEach(function (k) {
+    $("vote-" + k).addEventListener("click", function (e) {
+      var v = vals();
+      if (!v.name) { e.preventDefault(); showErr("e-name", $("name")); return; }
+      if (!phoneOk(v.phone)) { e.preventDefault(); showErr("e-phone", $("phone")); return; }
+      updateLinks();
+      e.preventDefault();
+      if (document.querySelector(".vote.busy")) return;
+      send(k, v);
+    });
+  });
+  ["name", "phone"].forEach(function (id) {
+    $(id).addEventListener("input", function () {
+      this.classList.remove("bad");
+      if (vals().name && phoneOk(vals().phone)) { errKey = null; $("err").hidden = true; }
+      updateLinks();
+    });
+  });
+  $("name").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); $("phone").focus(); } });
+  $("phone").addEventListener("keydown", function (e) { if (e.key === "Enter") this.blur(); });
+  function setGuests(n) {
+    guests = Math.min(6, Math.max(1, n));
+    $("guests").textContent = guests;
+    $("minus").disabled = guests === 1;
+    $("plus").disabled = guests === 6;
+    updateLinks();
+    if (lastVote === "yes") renderThanks();
+  }
+  $("minus").addEventListener("click", function () { setGuests(guests - 1); });
+  $("plus").addEventListener("click", function () { setGuests(guests + 1); });
+
+  // Cover: the video always stays muted (it contains speech). Optional music-only track plays after opening.
+  var vid = $("vid"), music = null;
+  vid.addEventListener("error", function () { vid.remove(); });
+  if (MUSIC) {
+    music = new Audio(MUSIC);
+    music.loop = true;
+    music.addEventListener("error", function () { music = null; $("sound").hidden = true; });
+  }
+  function renderSound() {
+    var on = music && !music.paused;
+    $("sound").setAttribute("aria-label", on ? t("snd-off") : t("snd-on"));
+    $("wave").style.display = on ? "" : "none";
+    $("mute").style.display = on ? "none" : "";
+  }
+  $("open").addEventListener("click", function () {
+    document.body.classList.add("open");
+    vid.muted = true;
+    if (vid.paused) vid.play().catch(function () {});
+    if (music) {
+      $("sound").hidden = false;
+      music.play().then(renderSound, renderSound);
+    }
+    renderSound();
+  });
+  $("sound").addEventListener("click", function () {
+    if (!music) return;
+    if (music.paused) music.play().then(renderSound, renderSound); else { music.pause(); renderSound(); }
+  });
+  document.querySelectorAll(".pill button").forEach(function (b) {
+    b.addEventListener("click", function () { lang = b.getAttribute("data-lang"); applyLang(); });
+  });
+
+  // Gallery dots
+  var strip = $("strip"), figs = strip.querySelectorAll("figure"), dots = $("dots");
+  figs.forEach(function () { dots.appendChild(document.createElement("i")); });
+  function markDot() {
+    var mid = strip.scrollLeft + strip.clientWidth / 2, best = 0, bd = Infinity;
+    figs.forEach(function (f, i) { var d = Math.abs(f.offsetLeft + f.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
+    dots.querySelectorAll("i").forEach(function (d, i) { d.className = i === best ? "on" : ""; });
+  }
+  strip.addEventListener("scroll", function () { requestAnimationFrame(markDot); }, { passive: true });
+
+  if (h === "#rsvp") document.body.classList.add("open");
+  setGuests(1);
+  applyLang();
+  markDot();
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
+</body>
+</html>

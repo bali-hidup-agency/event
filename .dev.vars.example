@@ -1,0 +1,10 @@
+# Copy to .dev.vars for local testing. In production set these under
+# Cloudflare Pages > Settings > Variables and Secrets.
+
+# Email notification on every RSVP (via resend.com, free tier is enough)
+RESEND_API_KEY=
+NOTIFY_EMAIL_FROM=HIDUP Events <events@bali-hidup-agency.com>
+NOTIFY_EMAIL_TO=info@bali-hidup-agency.com
+
+# Optional: any webhook (Slack, Make, Zapier ...) that should receive each RSVP as JSON
+NOTIFY_WEBHOOK_URL=

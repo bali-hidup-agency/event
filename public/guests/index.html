@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Guest List Community Event</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/img/logo-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: internal team tool. Summary tiles first, then "add a reply" (paste a WhatsApp RSVP or type it), then the guest list. Same HIDUP black + champagne tokens as the invitation. */
+:root {
+  --bg: #f6f4ef; --card: #ffffff; --ink: #161614; --muted: #6b675f; --line: #e5e1d7;
+  --gold: #b8924f; --gold-soft: #f3ead8; --yes: #1d7a4c; --yes-soft: #e3f2ea; --no: #9a3f31; --no-soft: #f7e6e2;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --card: #1c1c1a; --ink: #f2f0ea; --muted: #a8a49a; --line: #32312d;
+    --gold: #d6b676; --gold-soft: #2b2518; --yes: #5cc28f; --yes-soft: #17291f; --no: #e2907f; --no-soft: #2e1c18; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --card: #1c1c1a; --ink: #f2f0ea; --muted: #a8a49a; --line: #32312d;
+  --gold: #d6b676; --gold-soft: #2b2518; --yes: #5cc28f; --yes-soft: #17291f; --no: #e2907f; --no-soft: #2e1c18; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.5 var(--body); }
+.wrap { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; display: grid; gap: 22px; }
+h1, h2 { margin: 0; font-family: var(--display); text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+header .eyebrow { font: 700 12px var(--body); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+header h1 { font-size: 30px; font-weight: 800; margin-top: 4px; }
+header p { margin: 6px 0 0; color: var(--muted); }
+
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.tile b { display: block; font: 800 32px/1.1 var(--display); font-variant-numeric: tabular-nums; }
+.tile span { font-size: 13px; color: var(--muted); font-weight: 600; }
+.tile.yes b { color: var(--yes); }
+.tile.no b { color: var(--no); }
+
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: grid; gap: 14px; }
+.panel h2 { font-size: 18px; font-weight: 700; }
+.panel .hint { margin: -8px 0 0; color: var(--muted); font-size: 14px; }
+textarea, input, select { width: 100%; font: 500 15px var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+textarea { min-height: 96px; resize: vertical; }
+.grid { display: grid; grid-template-columns: 2fr 2fr 1fr 1.2fr; gap: 10px; }
+.grid label, .full label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted); min-width: 0; }
+.full { display: grid; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn { border: 0; border-radius: 10px; padding: 10px 16px; font: 700 14px var(--body); cursor: pointer; background: var(--ink); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn.gold { background: var(--gold); color: #1b1408; }
+.btn:disabled { opacity: .45; cursor: default; }
+.msg { font-size: 14px; font-weight: 600; }
+.msg.ok { color: var(--yes); }
+.msg.bad { color: var(--no); }
+
+.listhead { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.listhead h2 { font-size: 20px; font-weight: 800; }
+.filters { display: flex; gap: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.filters button { border: 0; background: transparent; color: var(--ink); font: 600 13px var(--body); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.tablewrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.name { font-weight: 700; }
+.note { font-size: 13px; color: var(--muted); }
+.phone { font-variant-numeric: tabular-nums; user-select: all; }
+.chip { display: inline-flex; align-items: center; gap: 6px; border: 0; border-radius: 999px; padding: 4px 10px; font: 700 12px var(--body); cursor: pointer; }
+.chip.yes { background: var(--yes-soft); color: var(--yes); }
+.chip.no { background: var(--no-soft); color: var(--no); }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.date { font-size: 13px; color: var(--muted); white-space: nowrap; }
+.del { border: 0; background: transparent; color: var(--muted); cursor: pointer; font: 600 13px var(--body); padding: 4px 6px; border-radius: 6px; }
+.del.confirm { color: var(--no); background: var(--no-soft); }
+.empty { padding: 34px 18px; text-align: center; color: var(--muted); }
+.empty b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 4px; }
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .tiles b { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Internal · Bali Hidup Agency</div>
+    <h1>Guest List · HIDUP Community Event</h1>
+    <p>Saturday, 21 November 2026 · 4–8 pm · Dalung Tropical · Reply deadline Sunday, 15 November</p>
+  </header>
+
+  <div class="tiles">
+    <div class="tile yes"><b id="t-yes">0</b><span>Attending (replies)</span></div>
+    <div class="tile"><b id="t-people">0</b><span>Total guests</span></div>
+    <div class="tile no"><b id="t-no">0</b><span>Declined</span></div>
+  </div>
+
+  <section class="panel" aria-labelledby="add-h">
+    <h2 id="add-h">Add a reply</h2>
+    <p class="hint">Paste a WhatsApp reply from the invitation here. Name, number, guests and yes/no are filled in automatically. Check the fields, then save.</p>
+    <div class="full"><label for="paste">Paste WhatsApp message<textarea id="paste" placeholder="Hi HIDUP team,&#10;I'll be at the Community Event on 21 November.&#10;&#10;Name: …&#10;WhatsApp: …&#10;People: 2"></textarea></label></div>
+    <div class="grid">
+      <label for="f-name">Name<input id="f-name" type="text" autocomplete="off"></label>
+      <label for="f-phone">WhatsApp<input id="f-phone" type="tel" autocomplete="off"></label>
+      <label for="f-guests">Guests<input id="f-guests" type="number" min="1" max="10" value="1"></label>
+      <label for="f-status">Status<select id="f-status"><option value="yes">Attending</option><option value="no">Declined</option></select></label>
+    </div>
+    <div class="full"><label for="f-note">Note (optional)<input id="f-note" type="text" autocomplete="off" placeholder="e.g. bringing partner, vegetarian"></label></div>
+    <div class="row">
+      <button type="button" class="btn" id="save" disabled>Save</button>
+      <button type="button" class="btn ghost" id="clear">Clear</button>
+      <span class="msg" id="msg" role="status"></span>
+    </div>
+  </section>
+
+  <section aria-labelledby="list-h" style="display:grid;gap:12px">
+    <div class="listhead">
+      <h2 id="list-h">Guests</h2>
+      <div class="row">
+        <div class="filters" role="group" aria-label="Filter">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="yes" aria-pressed="false">Attending</button>
+          <button type="button" data-f="no" aria-pressed="false">Declined</button>
+        </div>
+        <button type="button" class="btn gold" id="copy">Copy list</button>
+      </div>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Name</th><th>WhatsApp</th><th class="num">Guests</th><th>Status</th><th>Added</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty"><b id="empty-h">Loading the list…</b><span id="empty-p">Replies appear here as soon as the first one is added.</span></div>
+    </div>
+  </section>
+</div>
+
+<script>
+(async function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var rows = [], filter = "all", ready = false, pendingDel = null;
+
+  function digits(s) { return String(s || "").replace(/\D/g, ""); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function fmtDate(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    return d.toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit" }) + " " + d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  }
+  function docId(name, phone) {
+    var p = digits(phone);
+    if (p.length >= 8) return "p" + p;
+    return "n" + name.toLowerCase().replace(/[^a-z0-9äöüß]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+  }
+
+  // Parses the RSVP text the invitation generates (DE or EN), and tolerates hand-typed variants.
+  function parse(text) {
+    var t = text || "", out = {};
+    var m = t.match(/Name\s*:\s*(.+)/i); if (m) out.name = m[1].trim();
+    m = t.match(/(?:WhatsApp|Telefon|Phone|Nummer)\s*:\s*([+\d][\d\s()\-\/.]{5,})/i); if (m) out.phone = m[1].trim();
+    m = t.match(/(?:Personen|People|Persons|Guests)\s*:\s*(\d+)/i); if (m) out.guests = parseInt(m[1], 10);
+    if (/nicht dabei|leider nicht|kann .*nicht|can['’]?t make it|cannot make it|not be able/i.test(t)) out.status = "no";
+    else if (/bin .*dabei|komme|I['’]ll be|will be there|be at the/i.test(t)) out.status = "yes";
+    return out;
+  }
+
+  function fill(p) {
+    if (p.name) $("f-name").value = p.name;
+    if (p.phone) $("f-phone").value = p.phone;
+    if (p.guests) $("f-guests").value = p.guests;
+    if (p.status) $("f-status").value = p.status;
+    syncSave();
+  }
+  function syncSave() { $("save").disabled = !ready || !$("f-name").value.trim(); }
+  function say(text, ok) { $("msg").textContent = text; $("msg").className = "msg " + (ok ? "ok" : "bad"); }
+
+  $("paste").addEventListener("input", function () {
+    var p = parse(this.value);
+    fill(p);
+    var found = ["name", "phone", "guests", "status"].filter(function (k) { return p[k] != null; }).length;
+    if (this.value.trim()) say(found ? found + " of 4 details recognised. Check them and save." : "Nothing recognised. Please fill in the fields by hand.", found > 0);
+  });
+  ["f-name", "f-phone"].forEach(function (id) { $(id).addEventListener("input", syncSave); });
+  $("clear").addEventListener("click", function () {
+    ["paste", "f-name", "f-phone", "f-note"].forEach(function (id) { $(id).value = ""; });
+    $("f-guests").value = 1; $("f-status").value = "yes"; say("", true); syncSave();
+  });
+
+  $("save").addEventListener("click", async function () {
+    var name = $("f-name").value.trim(), phone = $("f-phone").value.trim();
+    if (!name) return;
+    var status = $("f-status").value;
+    var data = {
+      name: name, phone: phone, status: status,
+      guests: status === "yes" ? Math.max(1, parseInt($("f-guests").value, 10) || 1) : 0,
+      note: $("f-note").value.trim(),
+      updatedAt: new Date().toISOString()
+    };
+    var id = docId(name, phone);
+    var existing = rows.find(function (r) { return r.id === id; });
+    data.createdAt = existing && existing.createdAt ? existing.createdAt : data.updatedAt;
+    $("save").disabled = true;
+    try {
+      await api("POST", "/api/guests", { name: data.name, phone: data.phone, guests: data.guests, status: data.status, note: data.note });
+      await load();
+      say(existing ? name + " updated." : name + " added.", true);
+      $("clear").click();
+      say(existing ? name + " updated." : name + " added.", true);
+    } catch (e) {
+      say("Couldn't save. Please reload the page and sign in again.", false);
+      syncSave();
+    }
+  });
+
+  document.querySelectorAll(".filters button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      filter = b.getAttribute("data-f");
+      document.querySelectorAll(".filters button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      render();
+    });
+  });
+
+  $("copy").addEventListener("click", function () {
+    var list = rows.filter(function (r) { return filter === "all" || r.status === filter; });
+    var text = ["Name;WhatsApp;Guests;Status;Note"].concat(list.map(function (r) {
+      return [r.name, r.phone, r.status === "yes" ? r.guests : 0, r.status === "yes" ? "Attending" : "Declined", r.note || ""].join(";");
+    })).join("\n");
+    var btn = this;
+    function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy list"; }, 1500); }
+    try { navigator.clipboard.writeText(text).then(done, function () {}); } catch (e) {}
+  });
+
+  function render() {
+    var yes = rows.filter(function (r) { return r.status === "yes"; });
+    $("t-yes").textContent = yes.length;
+    $("t-people").textContent = yes.reduce(function (s, r) { return s + (r.guests || 1); }, 0);
+    $("t-no").textContent = rows.filter(function (r) { return r.status === "no"; }).length;
+    var list = rows.filter(function (r) { return filter === "all" || r.status === filter; });
+    $("rows").innerHTML = list.map(function (r) {
+      return "<tr><td><div class=\"name\">" + esc(r.name) + "</div>" + (r.note ? "<div class=\"note\">" + esc(r.note) + "</div>" : "") + "</td>" +
+        "<td class=\"phone\">" + esc(r.phone) + "</td>" +
+        "<td class=\"num\">" + (r.status === "yes" ? (r.guests || 1) : "–") + "</td>" +
+        "<td><button type=\"button\" class=\"chip " + r.status + "\" data-toggle=\"" + esc(r.id) + "\" title=\"Switch status\">" + (r.status === "yes" ? "Attending" : "Declined") + "</button></td>" +
+        "<td class=\"date\">" + fmtDate(r.createdAt) + "</td>" +
+        "<td><button type=\"button\" class=\"del" + (pendingDel === r.id ? " confirm" : "") + "\" data-del=\"" + esc(r.id) + "\">" + (pendingDel === r.id ? "Delete for good?" : "Delete") + "</button></td></tr>";
+    }).join("");
+    $("empty").hidden = list.length > 0;
+    if (!list.length && rows.length) { $("empty-h").textContent = "No entries in this filter"; $("empty-p").textContent = ""; }
+  }
+
+  $("rows").addEventListener("click", async function (e) {
+    var t = e.target.closest("button"); if (!t || !ready) return;
+    var id = t.getAttribute("data-toggle");
+    if (id) {
+      var r = rows.find(function (x) { return x.id === id; });
+      var next = r.status === "yes" ? "no" : "yes";
+      try { await api("PATCH", "/api/guests/" + encodeURIComponent(id), { status: next }); await load(); }
+      catch (err) { say("Couldn't change the status.", false); }
+      return;
+    }
+    id = t.getAttribute("data-del");
+    if (id) {
+      if (pendingDel !== id) { pendingDel = id; render(); return; }
+      pendingDel = null;
+      try { await api("DELETE", "/api/guests/" + encodeURIComponent(id)); await load(); } catch (err) { say("Couldn't delete.", false); render(); }
+    }
+  });
+
+  // Data: served by /api/guests (behind Cloudflare Access), refreshed every 20 seconds.
+  async function api(method, url, body) {
+    var r = await fetch(url, {
+      method: method,
+      headers: body ? { "content-type": "application/json" } : {},
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: "same-origin"
+    });
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  }
+  async function load() {
+    try {
+      var d = await api("GET", "/api/guests");
+      rows = d.guests.map(function (g) {
+        return { id: g.id, name: g.name, phone: g.phone, guests: g.guests, status: g.status, note: g.note, createdAt: g.created_at };
+      });
+      ready = true;
+      syncSave();
+      if (!rows.length) { $("empty-h").textContent = "No replies yet"; $("empty-p").textContent = "Replies from the invitation appear here automatically. You can also add one above."; }
+      render();
+    } catch (e) {
+      $("empty-h").textContent = "The list couldn't be loaded.";
+      $("empty-p").textContent = "Please reload the page. If it keeps happening, sign in again.";
+      $("empty").hidden = false;
+    }
+  }
+  load();
+  setInterval(function () { if (!document.hidden && !pendingDel) load(); }, 20000);
+})();
+</script>
+
+</body>
+</html>
