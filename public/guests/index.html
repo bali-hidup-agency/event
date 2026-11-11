@@ -86,6 +86,8 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .empty { padding: 34px 18px; text-align: center; color: var(--muted); }
 .empty b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 4px; }
 
+body.locked .tiles, body.locked section:not(#login) { display: none !important; }
+#login input { max-width: 300px; }
 @media (max-width: 640px) {
   .grid { grid-template-columns: 1fr 1fr; }
   .tiles b { font-size: 26px; }
@@ -100,6 +102,16 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
     <h1>Guest List · HIDUP Community Event</h1>
     <p>Saturday, 21 November 2026 · 4–8 pm · Dalung Tropical · Reply deadline Sunday, 15 November</p>
   </header>
+
+  <section class="panel" id="login" hidden aria-labelledby="login-h">
+    <h2 id="login-h">Team login</h2>
+    <p class="hint">Enter the guest list password to see the replies.</p>
+    <form class="row" id="login-form">
+      <input type="password" id="pw" autocomplete="current-password" placeholder="Password">
+      <button type="submit" class="btn">Open guest list</button>
+      <span class="msg bad" id="pw-msg" role="alert"></span>
+    </form>
+  </section>
 
   <div class="tiles">
     <div class="tile yes"><b id="t-yes">0</b><span>Attending (replies)</span></div>
@@ -279,13 +291,25 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   });
 
   // Data: served by /api/guests (behind Cloudflare Access), refreshed every 20 seconds.
+  var PW_KEY = "hidup-guestlist-pw";
+  function getPw() { try { return sessionStorage.getItem(PW_KEY) || ""; } catch (e) { return window.__pw || ""; } }
+  function setPw(v) { window.__pw = v; try { if (v) sessionStorage.setItem(PW_KEY, v); else sessionStorage.removeItem(PW_KEY); } catch (e) {} }
+  function lock(msg) {
+    document.body.classList.add("locked");
+    $("login").hidden = false;
+    $("pw-msg").textContent = msg || "";
+    $("pw").focus();
+  }
+  $("login-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    setPw($("pw").value);
+    load();
+  });
   async function api(method, url, body) {
-    var r = await fetch(url, {
-      method: method,
-      headers: body ? { "content-type": "application/json" } : {},
-      body: body ? JSON.stringify(body) : undefined,
-      credentials: "same-origin"
-    });
+    var headers = { authorization: "Bearer " + getPw() };
+    if (body) headers["content-type"] = "application/json";
+    var r = await fetch(url, { method: method, headers: headers, body: body ? JSON.stringify(body) : undefined });
+    if (r.status === 401) { setPw(""); lock(getPw() === "" && $("pw").value ? "Wrong password." : ""); throw new Error("401"); }
     if (!r.ok) throw new Error(r.status);
     return r.json();
   }
@@ -296,17 +320,21 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
         return { id: g.id, name: g.name, phone: g.phone, guests: g.guests, status: g.status, note: g.note, createdAt: g.created_at };
       });
       ready = true;
+      document.body.classList.remove("locked");
+      $("login").hidden = true;
+      $("pw").value = "";
       syncSave();
       if (!rows.length) { $("empty-h").textContent = "No replies yet"; $("empty-p").textContent = "Replies from the invitation appear here automatically. You can also add one above."; }
       render();
     } catch (e) {
+      if (e.message === "401") return;
       $("empty-h").textContent = "The list couldn't be loaded.";
       $("empty-p").textContent = "Please reload the page. If it keeps happening, sign in again.";
       $("empty").hidden = false;
     }
   }
-  load();
-  setInterval(function () { if (!document.hidden && !pendingDel) load(); }, 20000);
+  if (getPw()) load(); else lock();
+  setInterval(function () { if (!document.hidden && !pendingDel && !document.body.classList.contains("locked")) load(); }, 20000);
 })();
 </script>
 
