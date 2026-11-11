@@ -12,7 +12,7 @@ Hosted on **Vercel**, deployed from GitHub (`bali-hidup-agency/event`): every pu
 | `public/guests/index.html` | Team guest list at `/guests/` (English, team password): totals, filter, add replies by hand or by pasting a WhatsApp message, switch status, delete, copy as CSV. |
 | `api/rsvp.js` | Public endpoint: saves an RSVP and sends the notification. |
 | `api/guests/` | Team endpoints for the guest list; refuse every request without the team password. |
-| `lib/store.js` | Validation and storage (Upstash Redis). |
+| `lib/store.js` | Validation and storage (Neon Postgres, table `guests`, created on first use). |
 | `lib/notify.js` | Email / webhook notification per RSVP. |
 
 A second reply from the same WhatsApp number updates the first one instead of adding a duplicate.
@@ -20,7 +20,7 @@ A second reply from the same WhatsApp number updates the first one instead of ad
 ## One-time setup in Vercel (about 15 minutes)
 
 ### 1. Storage
-Vercel project → **Storage → Create Database → Upstash for Redis** (free plan) → connect it to this project. This adds `KV_REST_API_URL` and `KV_REST_API_TOKEN` automatically.
+Vercel project → **Storage → Create Database → Neon** (free plan) → connect it to this project. This adds `DATABASE_URL` automatically. The `guests` table is created on the first reply; you can view and export it in the Neon dashboard.
 
 ### 2. Team password
 Project → **Settings → Environment Variables** → add `GUESTLIST_PASSWORD` with a strong password. Share it only with the team. Without it the guest list stays locked for everyone.
